@@ -25,18 +25,24 @@ var Cat = function() {
 }
 
 
+// var ViewModel = function() {
+//     this.currentCat = ko.observable( new Cat() );
+//
+//     this.incrementCounter = function() {
+//         this.clickCount(this.clickCount() + 1);
+//     };
+// };
+
+
+
 var ViewModel = function() {
+    var self = this;
     this.currentCat = ko.observable( new Cat() );
 
     this.incrementCounter = function() {
-        this.clickCount(this.clickCount() + 1);
+        self.currentCat().clickCount(self.currentCat().clickCount() + 1);
     };
 };
 
-//     this.incrementCounter = function() {
-//         this.clickCount(this.clickCount() + 1);
-//         var count = 0;
-//         count++;
-//     };
-//
-// ko.applyBindings(new ViewModel());
+
+ko.applyBindings(new ViewModel());
