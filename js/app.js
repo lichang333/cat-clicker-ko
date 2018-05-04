@@ -29,7 +29,7 @@ var ViewModel = function() {
     this.currentCat = ko.observable( new Cat() );
 
     this.incrementCounter = function() {
-        this.clickCount(this.clickCount() + 1);
+        this.currentCat().clickCount(this.currentCat().clickCount() + 1);
     };
 };
 
@@ -39,4 +39,4 @@ var ViewModel = function() {
 //         count++;
 //     };
 //
-// ko.applyBindings(new ViewModel());
+ko.applyBindings(new ViewModel());
