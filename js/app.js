@@ -34,21 +34,23 @@ var Cat = function(data) {
 // };
 
 
-
 var ViewModel = function() {
     var self = this;
-    this.currentCat = ko.observable( new Cat({
-        clickCount: 0,
-        name: 'Tabby',
-        imgSrc: 'img/434164568_fea0ad4013_z.jpg',
-        nicknames: ['Tabtab', 'Mazen', 'Coco', 'Zhiqi']
 
-    }) );
+    this.catList = ko.observableArray([]);
+
+    initialCats.forEach(function(catItem){
+        self.catList.push(new Cat(catItem));
+    });
+
+    this.currentCat = ko.observable( this.catList()[0]);
 
     this.incrementCounter = function() {
         self.currentCat().clickCount(self.currentCat().clickCount() + 1);
     };
+
+    this.setCat = function(clickedCat){
+        self.currentCat(clickedCat);
+    };
 };
-
-
 ko.applyBindings(new ViewModel());
